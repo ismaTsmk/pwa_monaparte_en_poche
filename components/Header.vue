@@ -27,31 +27,26 @@
                         </div>
                     </div>
                     <div @click="toogleOpenMenu"
-                        :class="['absolute right-0 flex flex-col  items-end justify-center w-10 h-10 rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
+                        :class="['absolute right-0 flex flex-col  items-center justify-center w-10 h-10 rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
                         <Icon :name="showMenu ? 'octicon:chevron-up-12' : 'octicon:chevron-down-12' " class=" text-gray-400" size="20" />
-
-
                     </div>
                 </div>
                 <!-- <mci-extension data-role="overlay" id="overlay-root"></mci-extension> -->
             </nav>
+    
             <div
                 class="w-full h-20  justify-center items-center absolute  -bottom-10  z-30 object-cover   hidden    xl:flex  ">
-                <!-- <div class="w-80   h-80  bg-gradient-to-b from-white bg-opacity-75 to-transparent  via-transparent transform rotate-45 flex  items-center justify-center"> -->
-                <div v-if="$route.path === '/' || $route.hash == '/a_propos'"
-                    class=" w-[500px]   h-auto  flex  items-center justify-center">
-
-                    <!-- image place logo in asset   local -->
-                    <!-- <img src="@/assets/images/logo/logo_alminbar548x270.png" alt="logo" class="h-auto   w-full   pt-64"> -->
                     
-
-                </div>
             </div>
         </div>
 
     </section>
     <!-- overlay div only show menu variable  --> 
-    <div v-if="showMenu" @click="toogleOpenMenu" class="fixed inset-0 z-40 bg-black opacity-50"></div>
+    <div v-if="showMenu" @click="toogleOpenMenu" class="fixed inset-0 z-40 bg-black bg-opacity-50">
+        <div class="bg-gray-50 rounded-3xl   shadow-sm  absolute  right-0 left-0  bottom-0 m-auto  top-1/3  w-[96%]  mx-auto  ">
+                    <h2>ssssss</h2>
+            </div>
+    </div>
     <!-- Carré pivotant avec logo -->
 </template>
 

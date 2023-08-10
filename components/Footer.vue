@@ -1,21 +1,31 @@
 <template>
-  <footer class="pb-5 pt-1  bg-gray-50 shadow-sm   bottom-0 lg:bg-white w-full z-20 fixed" >
-    <div class="px-10 mx-auto " >
-      <div class="flex flex-col items-center sm:flex-row sm:justify-between ">
-        <NuxtLink :to="'/'" class="flex items-center text-lg font-bold mb-10 lg:mb-0">
-          <!-- <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="logo" class=" max-w-[100px] -mb-10"> -->
+  <footer class=" bottom-10 w-full z-20 fixed " >
+    <div class="md:px-10 mx-auto  w-[90%] bg-white rounded-3xl h-[62px] flex items-center" >
+      <div class="flex flex-row items-center sm:flex-row  justify-evenly bg-emerald-00  w-full">
+        <!-- <Icon v-for="(icon,index) in listIcon" :name="icon.nameIcon" class=" text-gray-400" size="20" /> -->
+        <NuxtLink
+          v-for="(icon, index) in listIcon"
+          :key="index"
+          :to="icon.link"
+          class="flex flex-col justify-center  items-center bg-yellow-30"
+        >
+          <Icon :name="icon.nameIcon" :class="$route.path == icon.link ? 'text-[#FF409C]' : 'text-[#E0D1FF]'" size="20" /> 
+          <span :class="$route.path == icon.link ? 'text-[#FF409C]' : 'text-[#ccb4fc]'">{{ icon.name }}</span>
         </NuxtLink>
       </div>
-      <div class="flex flex-col justify-between   mt-5 mb-5 text-center sm:mb-0 sm:mt-12 sm:flex-row">
-        <ul class="flex flex-col lg:flex-row justify-center pb-3 -ml-4 -mr-4 text-sm font-bold">
-          <li> <NuxtLink href="/mention-legale" class="px-2  text-gray-500 hover:text-gray-600">Mentions légales</NuxtLink> </li>
-          <li> <NuxtLink  href="/condition" class="px-2  text-gray-500 hover:text-gray-600">Condition générale de vente</NuxtLink> </li>
-          <li> <a href="#_" class="px-2  text-gray-500 hover:text-gray-600"> Politique de confidentialité</a> </li>
-          <li> <a href="#_" class="px-2  text-gray-500 hover:text-gray-600">Contactez nous au 06 60 50 83 97</a></li>
-        </ul>
-        <p class="mt-3 text-xs leading-tight text-gray-500 sm:mt-0"> © Copyright 2023</p>
-
-      </div>
     </div>
-  </footer></template>
+  </footer>
+  </template>
+
+
+  <script setup>
+  import { ref, computed } from 'vue';
+  // list data return icon  
+  const listIcon = ref([
+    {name:"Accueil",  nameIcon: 'octicon:home-16', link: '/' ,active : true  },
+    {name:"Evennements", nameIcon: 'octicon:search-16', link: '/event',active : false },
+    {name:"Aide", nameIcon: 'octicon:bookmark-16', link: '/help',active : false },
+    {name:"Découvrir", nameIcon: 'octicon:person-16', link: '/discover',active : false },
+  ]);
   
+  </script>
