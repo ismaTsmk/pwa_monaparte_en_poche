@@ -1,6 +1,5 @@
 <template>
-  <div class="mt-[115px] "></div>
-  <footer class="pb-5 pt-1  bg-gray-50 shadow-sm   bottom-0 lg:bg-white w-full z-50" >
+  <footer class="pb-5 pt-1  bg-gray-50 shadow-sm   bottom-0 lg:bg-white w-full z-20 fixed" >
     <div class="px-10 mx-auto " >
       <div class="flex flex-col items-center sm:flex-row sm:justify-between ">
         <NuxtLink :to="'/'" class="flex items-center text-lg font-bold mb-10 lg:mb-0">

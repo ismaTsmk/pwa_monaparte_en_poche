@@ -21,132 +21,15 @@
                             <div
                                 class=" flex flex-col items-start justify-center w-full  space-x-6 text-center lg:space-x-8  lg:mt-0 lg:flex-row lg:items-center ">
 
-
-                                <div
-                                    class="flex flex-col   items-start lg:items-center  lg:justify-center px-4 lg:px-0   lg:flex-row w-full   mb-20 lg:mb-0 ">
-
-                                    <div class="group relative cursor-pointer py-2   w-full  md:w-auto">
-                                        <div class="flex items-center justify-start  lg:justify-between space-x-5 bg-white px-2">
-                                            <a class="menu-hover my-2 py-2 text-base font-medium text-black lg:mx-2 "
-                                                onClick="">
-                                                Omra
-                                            </a>
-                                            <span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div class="hidden lg:absolute z-50 flex    mx-auto  lg:w-full flex-col bg-white py-1 px-4 text-gray-800 shadow-xl group-hover:flex rounded-3xl border-b border-primary-500"
-                                            onClick="">
-                                            <NuxtLink v-for="(item, index) in yearsMore1" :key="index"  ref="customLink"
-                                                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black lg:mx-2 hover:border-b  hover:border-primary-900">
-                                                {{ item.value }}</NuxtLink>
-                                        </div>
-                                    </div>
-                                    <div class="group relative cursor-pointer py-2   w-full  md:w-auto">
-                                        <div class="flex items-center justify-start  lg:justify-between space-x-5 bg-white px-2">
-                                            <a class="menu-hover my-2 py-2 text-base font-medium text-black lg:mx-2 "
-                                                onClick="">
-                                                Omra Ramadan
-                                            </a>
-                                            <span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div class="hidden lg:absolute z-50 flex   mx-auto  lg:w-full flex-col bg-white py-1 px-4 text-gray-800 shadow-xl group-hover:flex rounded-3xl border-b border-primary-500"
-                                            onClick="">
-                                            <NuxtLink v-for="(item, index) in yearsMore1" :key="index" ref="customLink"
-                                                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black lg:mx-2 hover:border-b  hover:border-primary-900">
-                                                {{ item.value }}</NuxtLink>
-
-                                        </div>
-                                    </div>
-                                        <div class="flex items-center justify-between space-x-5 bg-white px-2">
-                                            <NuxtLink 
-                                                class="  my-2 py-2 text-base font-medium text-black lg:mx-2">
-                                                Hajj
-                                            </NuxtLink>
-                                        </div>
-
-
- 
-                                    <div class="group relative cursor-pointer py-2   w-full  md:w-auto">
-                                        <div class="flex items-center justify-start  lg:justify-between space-x-5 bg-white px-2">
-                                            <a class="menu-hover my-2 py-2 text-base font-medium text-black lg:mx-2 "
-                                                onClick="">
-                                                Omra Combinée
-                                            </a>
-                                            <span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div class="hidden lg:absolute z-50 flex   mx-auto  lg:w-full flex-col bg-white py-1 px-4 text-gray-800 shadow-xl group-hover:flex rounded-3xl border-b border-primary-500"
-                                            onClick="">
-                                            <NuxtLink v-for="(item, index) in yearsMore1" :key="index" ref="customLink"
-                                                
-                                                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black lg:mx-2 hover:border-b  hover:border-primary-900">
-                                                {{ item.value }}</NuxtLink>
-
-                                        </div>
-                                    </div>
-
-                                        <div class="flex items-center justify-between space-x-5 bg-white px-2">
-                                            <NuxtLink to="/a_propos" 
-                                                class="  my-2 py-2 text-base font-medium text-black lg:mx-2 hover:text-indigo-800">
-                                                Infos Pratique
-                                            </NuxtLink>
-                                        </div>
-                                </div>
-
-
-                                <!-- <NuxtLink href="/"
-                                    class="absolute top-0 left-0 hidden py-2 mt-6 ml-10 mr-2 text-gray-600 lg:inline-block md:mt-0 md:ml-2 lg:mx-3 md:relative">
-                                    <svg class="inline w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" class=""></path>
-                                    </svg>
-                                </NuxtLink> -->
-
                             </div>
-                            <div
-                                class="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0 lg:hidden 3xl:block">
-                                <!-- <a href="#" class="w-full px-3 py-2 mr-0 text-gray-700 md:mr-2 lg:mr-3 md:w-auto"
-                                    style="word-break: break-word; position: relative; z-index: 0;">Sign In</a> -->
-                                <NuxtLink href=""
-                                    class="  inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 text-white drop-shadow-lg shadow-black 
-                                             bg-primary-900 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-primary-700 
-                                             focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-800  justify-center">
-                                    Contactez nous
-                                    <!-- <img src="@/assets/images/watt_logo.png" width="30" alt="" class="ms-4"> -->
 
-                                </NuxtLink>
-
-                            </div>
                             <!-- <mci-extension data-role="overlay" id="overlay-root"></mci-extension> -->
                         </div>
                     </div>
                     <div @click="toogleOpenMenu"
                         :class="['absolute right-0 flex flex-col  items-end justify-center w-10 h-10 rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
-                        <svg class="w-6 h-6 text-gray-700" x-show="!showMenu" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        <svg class="w-6 h-6 text-gray-700" x-show="showMenu" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                            </path>
-                        </svg>
+                        <Icon :name="showMenu ? 'octicon:chevron-up-12' : 'octicon:chevron-down-12' " class=" text-gray-400" size="20" />
+
 
                     </div>
                 </div>

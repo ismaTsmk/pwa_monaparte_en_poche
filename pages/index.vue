@@ -1,21 +1,22 @@
 <template>
-        <!-- <Head>
-            <Title>ROAST - Home</Title>
-         </Head> -->
-    <!-- for vue instead of using a href, vue router links will be used -->
-    <!-- replace appropriate tags after installing vue-router -->
-
-    <!-- <HeroHeade3r /> -->
-
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 ">
+      <div className="text-center">
+        <h1 className="text-4xl font-semibold text-white mb-6 ">Welcome to My Website</h1>
+        <p className="text-lg text-white mb-8">Discover the amazing features of our platform.</p>
+        <a
+          href="https://example.com"
+          className="inline-block bg-white text-blue-500 hover:bg-blue-400 px-6 py-3 rounded-lg font-semibold transition duration-300"
+        >
+          Get Started
+        </a>
+      </div>
+    </main>
 
 </template>
 
 <script lang="ts">
 
 
-import minaret from "@/assets/images/minaret.webp";
-
-import card1 from "@/assets/images/card1.webp";
 // import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 
 // SwiperCore.use([EffectCoverflow, Pagination]);
@@ -39,9 +40,7 @@ export default {
 
 <style scoped>
 @media (max-height: 900px) and (min-width: 1285px) {
-    .special-margin-screen {
-        margin-top: -14rem!important;
-    }
+
 
 }
 </style> 
