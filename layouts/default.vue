@@ -2,7 +2,9 @@
   <div class="scroll-smooth">
     <!-- <Header /> -->
     <!-- Le composant header -->
-    <slot />
+    <main class="z-0">
+      <slot />
+    </main>
     <!-- Le contenu de la page -->
     <Footer />
     <!-- Le composant footer -->
