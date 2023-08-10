@@ -6,7 +6,7 @@
                 <div class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-200 lg:overflow-visible  sm:px-4 md:px-2 lg:px-0">
                     <div class="flex items-center justify-start  h-full pr-4 relative break-words ">
                         <NuxtLink href="/" class=" py-4 lg:py-0 " >
-                            <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="" class="h-auto " style="max-width: 150px;">
+                            <!-- <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="" class="h-auto " style="max-width: 150px;"> -->
                         </NuxtLink>
                     </div>
                     <div
@@ -16,7 +16,7 @@
                             <NuxtLink href="/"
                                 class="   inline-flex items-center w-auto h-16 px-6 text-xl font-black leading-none text-gray-900 lg:hidden ">
 
-                                <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="" class="h-auto  ms-6 " style="max-width: 100px;">
+                                <!-- <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="" class="h-auto  ms-6 " style="max-width: 100px;"> -->
                             </NuxtLink>
                             <div
                                 class=" flex flex-col items-start justify-center w-full  space-x-6 text-center lg:space-x-8  lg:mt-0 lg:flex-row lg:items-center ">
@@ -128,7 +128,7 @@
                                              bg-primary-900 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-primary-700 
                                              focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-800  justify-center">
                                     Contactez nous
-                                    <img src="@/assets/images/watt_logo.png" width="30" alt="" class="ms-4">
+                                    <!-- <img src="@/assets/images/watt_logo.png" width="30" alt="" class="ms-4"> -->
 
                                 </NuxtLink>
 
@@ -159,7 +159,7 @@
                     class=" w-[500px]   h-auto  flex  items-center justify-center">
 
                     <!-- image place logo in asset   local -->
-                    <img src="@/assets/images/logo/logo_alminbar548x270.png" alt="logo" class="h-auto   w-full   pt-64">
+                    <!-- <img src="@/assets/images/logo/logo_alminbar548x270.png" alt="logo" class="h-auto   w-full   pt-64"> -->
                     
 
                 </div>

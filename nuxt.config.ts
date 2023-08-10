@@ -12,6 +12,16 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  components: {
+    dirs: [
+      '~/components'
+      // {
+      //   path: '~/other-components-folder',
+      //   extensions: ['vue'],
+      //   prefix: 'nuxt'
+      // }
+    ]
+  },
   pwa: {
     registerType: 'autoUpdate',
     manifest: {

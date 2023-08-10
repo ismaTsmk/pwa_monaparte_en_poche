@@ -4,7 +4,7 @@
     <div class="px-10 mx-auto " >
       <div class="flex flex-col items-center sm:flex-row sm:justify-between ">
         <NuxtLink :to="'/'" class="flex items-center text-lg font-bold mb-10 lg:mb-0">
-          <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="logo" class=" max-w-[100px] -mb-10">
+          <!-- <img src="@/assets/images/logo/logo_alminbar274x135.png" alt="logo" class=" max-w-[100px] -mb-10"> -->
         </NuxtLink>
       </div>
       <div class="flex flex-col justify-between   mt-5 mb-5 text-center sm:mb-0 sm:mt-12 sm:flex-row">
