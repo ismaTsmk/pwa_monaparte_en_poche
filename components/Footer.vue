@@ -42,7 +42,7 @@ const listIcon = ref([
   { name: "Accueil", nameIcon: 'octicon:home-16', link: '/', active: true },
   { name: "Evennements", nameIcon: 'carbon:event', link: '/event', active: false },
   { name: "Aide", nameIcon: 'mdi:help-outline', link: '/help', active: false },
-  { name: "Découvrir", nameIcon: 'solar:map-bold-duotone', link: '/discover', active: false },
+  { name: "Découvrir", nameIcon: 'solar:map-bold-duotone', link: '/login', active: false },
 ]);
 
 const showMenu2 = useState('showMenu', () => null)

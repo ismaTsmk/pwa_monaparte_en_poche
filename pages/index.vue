@@ -23,7 +23,7 @@
 
 
 export default {
-    name: "Index",
+    name: "index",
     methods: {
     },
     components: { },
@@ -33,6 +33,12 @@ export default {
 
         }
     },
+    mounted(){
+      const { user } = useFirebaseAuth()
+
+      console.log("mounted")
+      console.log(user)
+    }
 
 };
 </script>
