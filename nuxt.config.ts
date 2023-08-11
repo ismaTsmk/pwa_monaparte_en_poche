@@ -25,6 +25,14 @@ export default defineNuxtConfig({
       // }
     ]
   },
+//   vite: {
+//     server: {
+//         fs: {
+//             allow: [".."]
+//             // C:\DEVELLOPEMENT\monaparte_en_poche\front_monaparte\pages
+//         }
+//     }
+// },
   pwa: {
     // registerType: 'autoUpdate',
     // manifest: {
