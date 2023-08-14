@@ -1,5 +1,5 @@
 <template>
-    <main class="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 ">
+    <main class="flex min-h-full py-24 items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 ">
       <div class="text-center">
         <h1 class="text-4xl font-semibold text-white mb-6 ">Welcome to My <br> Discover page </h1>
         <p class="text-lg text-white mb-8">Discover the amazing features of our platform.</p>

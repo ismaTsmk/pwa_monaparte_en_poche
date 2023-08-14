@@ -1,52 +1,135 @@
 <template>
-    <div class="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 ">
-      <div class="text-center">
-        <h1 class="text-4xl font-semibold text-white mb-6 ">Welcome to My <br> Home page  </h1>
-        <p class="text-lg text-white mb-8">Discover the amazing features of our platform.</p>
+  <div class="flex  items-center justify-center  overflow-scroll  ">
+    <!-- bg-gradient-to-r from-secondary-500 to-primary-600 -->
+    <!-- <div class="text-center">
+        <h1 class="text-4xl font-semibold text-primary-500 mb-6 ">Welcome to My <br> Home page  </h1>
+        <p class="text-lg text-primary-500 mb-8">Discover the amazing features of our platform.</p>
         <a
           href="https://example.com"
-          class="inline-block bg-white text-blue-500 hover:bg-blue-400 px-6 py-3 rounded-lg font-semibold transition duration-300"
+          class="inline-block bg-primary-500 text-secondary-500 hover:bg-blue-400 px-6 py-3 rounded-lg font-semibold transition duration-300"
         >
           Découvrir
         </a>
+      </div> -->
+    <div class="bg-gray-100 p-4">
+      <!-- Titre centré en gras avec couleurs primaires et secondaires -->
+      <h1 class="text-center font-bold text-primary mb-4 text-secondary-500 text-2xl">Salut <span
+          class="text-primary-500">Tom</span> <br> Du nouveau dans l'apparte</h1>
+
+      <!-- Petite card -->
+      <div class="bg-white p-4 rounded shadow-md flex">
+        <div class="w-3/5">
+          <p class="text-secondary-500 font-bold">Trouvez les informations essentielles</p>
+          <a href="#" class="text-secondary-500 ">Mon batiment &gt;</a>
+        </div>
+        <div class="w-2/5">
+          <img src="https://placehold.co/150x85" alt="Image" class="w-full h-auto">
+        </div>
       </div>
+
+      <!-- Bloc "Voisins actifs" -->
+      <div class="mt-4 flex items-center justify-between">
+        <h2 class="font-bold text-2xl text-secondary-500">Voisins actifs</h2>
+        <button class="text-primary">Voir tout</button>
+      </div>
+
+      <!-- Bloc avec bouton "Ajouter favoris" et liste de thumbnails -->
+      <div class=" mt-4 flex items-end justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
+        <div class="border me-5 border-primary-500 border-dashed px-2 py-1 text-center flex justify-center items-center flex-col rounded-xl w-[70px] h-[70px] ">
+          <Icon :name="'mingcute:add-fill'" :class="'text-[#FF409C]'" size="35" />
+          <p class=" text-xs">Ajouter favoris</p>
+        </div>
+        <div class="flex  mt-4 ">
+          <img v-for="avatar in avatars" :key="avatar.id"
+            class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
+            :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar"
+            >
+            <!-- <img :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar" class=""> -->
+            <!-- <a data-v-a4011228="" href="/offres/25" class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover  hover:scale-110" style="background-image: url(https://i.pravatar.cc/150?u=fake@pravatar.com);" spellcheck="false"></a> -->
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <!-- Bloc "Information locale" avec liste de blocs scrollable -->
+      <div class="mt-4">
+        <h2 class="text-left font-bold mb-2 text-2xl text-secondary-500">Information locale</h2>
+        <div class="">
+          <div v-for="event in events" :key="event.id" class="">
+            <div class="flex ">
+              <img src="https://placehold.co/75x75" alt="" class="rounded-full ">
+              <div>
+                <p>dfjhdfhbhj</p>
+                <p>dfjhdfhbhj</p>
+
+              </div>
+            </div>
+            <div class="bg-white p-2 rounded-md shadow-md flex mb-2 min-h-[243px]" :style="{ backgroundImage: 'url(' + event.image + ')' }">
+              <p>dsfhdfbdffd</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
     </div>
 
+
+  </div>
 </template>
 
 <script lang="ts">
-
+import firebase from "firebase/app";
 
 // import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 
 // SwiperCore.use([EffectCoverflow, Pagination]);
 
-
 export default {
-    name: "index",
-    methods: {
-    },
-    components: { },
-    data() {
-        return {
+  name: "index",
+  methods: {
+  },
+  components: {},
+  data() {
+    return {
+      avatars: [
+        { id: 1, image: "https://placehold.co/70x70" },
+        { id: 2, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 3, image: "https://placehold.co/70x70" },
+
+        // ... add more avatars
+      ],
+      events: [
+        { id: 1, image: "https://source.unsplash.com/featured/343x246", title: "Événement 1", date: "Date 1" },
+        { id: 2, image: "https://source.unsplash.com/featured/343x246", title: "Événement 2", date: "Date 2" },
+        { id: 3, image: "https://source.unsplash.com/featured/343x246", title: "Événement 3", date: "Date 3" },
+        // ... add more events
+      ],
 
 
-        }
-    },
-    mounted(){
-      const { user } = useFirebaseAuth()
-
-      console.log("mounted")
-      console.log(user)
     }
+  },
+  mounted() {
+    console.log("mounted1234")
+    // const { $auth } = useNuxtApp()
+    // console.log($auth.currentUser.email)
+    // console.log("mounted2222")
+
+    console.log("mounted")
+    // console.log(useUser().value?.email)
+    // console.log(useUser.arguments.email)
+  }
 
 };
 </script>
 
 
 <style scoped>
-@media (max-height: 900px) and (min-width: 1285px) {
-
-
-}
+@media (max-height: 900px) and (min-width: 1285px) {}
 </style> 

@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   plugins: [
-    { src: '~/plugins/firebase.client.ts', mode: 'client' } // Chemin vers votre plugin Firebase
+    { src: '~/plugins/firebase.client.ts', mode: 'client' }, // Chemin vers votre plugin Firebase
   ],
   modules: [
     '@vite-pwa/nuxt',
-    'nuxt-icon'
+    'nuxt-icon',
 ],
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
@@ -28,6 +28,7 @@ export default defineNuxtConfig({
       // }
     ]
   },
+  
 //   vite: {
 //     server: {
 //         fs: {

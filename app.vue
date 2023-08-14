@@ -2,34 +2,59 @@
   <div>
     <VitePwaManifest />
     <NuxtLoadingIndicator />
-    <NuxtLayout>
-      <NuxtPage />
+    <NuxtLayout >
+        <NuxtPage v-if="userIsLoggedIn"/>
+      <div v-else>
+        <NuxtLink :to="'/login'">Aller à la page de connexion</NuxtLink>
+
+      </div>
     </NuxtLayout>
+
   </div>
 </template>
 
 <script>
-// import { useFirebaseAuth } from '@/chemin/vers/useFirebaseAuth'; // Assurez-vous de fournir le chemin correct
-// import { onMounted } from 'vue'; // Importez les hooks nécessaires
+import Login from '@/pages/login.vue';
+// import { useUser } from '@/composables/useUser'
+// const token = useCookie('token')
 
-// export default {
-//   setup() {
-//     const { user, registerUser } = useFirebaseAuth();
 
-//     // Exemple : appel à registerUser lorsque le composant est monté
-//     onMounted(async () => {
-//       const registrationSuccessful = await registerUser('example@example.com', 'motdepasse');
-//       if (registrationSuccessful) {
-//         console.log('Inscription réussie !');
-//       } else {
-//         console.log('Inscription échouée.');
-//       }
-//     });
+export default {
+    methods: {
+        userIsLoggedIn() {
+          const {getUser} = useFirebaseAuth()
+          const { $auth  } = useNuxtApp()
+          console.log('iciciciiciciciciicici ___________')
+          getUser().then(isLoggedIn => {
+          if (isLoggedIn) {
+            console.log("L'utilisateur est connecté");
+            return true
+          } else {
+            console.log("L'utilisateur n'est pas connecté");
+            return false 
+          }
+          // return isLoggedIn
+        });
+          // const response  = getUser().then(
+          //   userData => {
+          //     console.log(userData)
+          //   }
+          //  )
+          // console.log(response)
+          // console.log(token.value)
+            // Utilisez ici une condition pour vérifier si l'utilisateur est connecté
+            // Par exemple, vérifiez si this.$auth.loggedIn est vrai
+            // if (useUser().value === 'undefined') {
+            //   console.log("userIsLoggedIn false")
+            //   console.log(useUser())
+            //     return false;
+            // }
+            // console.log("userIsLoggedIn true")
+            // console.log(useUser())
 
-//     return {
-//       user,
-//       registerUser,
-//     };
-//   },
-// };
+            // return true;
+        }
+    },
+    components: { Login }
+};
 </script>

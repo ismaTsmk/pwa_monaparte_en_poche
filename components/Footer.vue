@@ -1,5 +1,5 @@
 <template>
-  <footer class=" bottom-10 w-full z-20 fixed ">
+  <footer class=" bottom-10 w-full z-20 fixed   ">
 
     <Transition name="slide-fade">
     <div v-if="showMenu2"
@@ -16,7 +16,7 @@
     </div>
   </Transition>
 
-    <div class="md:px-10 mx-auto  w-[90%] bg-white rounded-3xl h-[62px] flex items-center">
+    <div class="md:px-10 mx-auto  w-[90%] bg-white rounded-3xl h-[62px] flex items-center shadow-lg shadow-primary-200">
       <div class="flex flex-row items-center sm:flex-row  justify-evenly bg-emerald-00  w-full">
         <!-- <Icon v-for="(icon,index) in listIcon" :name="icon.nameIcon" class=" text-gray-400" size="20" /> -->
         <div class="absolute -top-10 bg-white shadow   shadow-zinc-400 rounded-full p-3 mx-auto  "
@@ -37,6 +37,8 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+  import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+
 // list data return icon  
 const listIcon = ref([
   { name: "Accueil", nameIcon: 'octicon:home-16', link: '/', active: true },

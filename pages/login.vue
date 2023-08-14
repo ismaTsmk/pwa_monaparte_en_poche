@@ -1,5 +1,5 @@
 <template>
-    <main class="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+    <main class="flex min-h-full py-8 items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
       <div class="text-center">
         <h1 class="text-4xl font-semibold text-white mb-6">Bienvenue<br> connecte toi</h1>
   
@@ -39,12 +39,12 @@
     },
     methods: {
       onSubmit () {
-        const { registerUser } = useFirebaseAuth()
+        const { loginUser } = useFirebaseAuth()
   
         this.error = ''
   
         if (this.email && this.password) {
-          const success =  registerUser(this.email, this.password)
+          const success =  loginUser(this.email, this.password)
   
           if (success) {
             this.$router.push({ name: 'index' })
