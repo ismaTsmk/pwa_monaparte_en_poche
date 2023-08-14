@@ -4,15 +4,20 @@
             <nav class="relative z-50 h-24 select-none  ">
                 <div class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-mediumlg:overflow-visible  sm:px-4 md:px-2 lg:px-0">
                     <div class="flex items-center justify-start  h-full pr-4 relative break-words ">
-                        <div class=" bg-white shadow   shadow-zinc-400 rounded-full p-2 mx-auto  "
+                        <div class=" bg-white shadow   shadow-zinc-400 rounded-full p-2 mx-auto  w-[50px] "
                             @click="toogleOpenMenu">
                             <p class="text-3xl  font-bold px-2 text-primary-500">T</p>
 
                             </div>
                     </div>
                     <div @click="toogleOpenMenu"
-                        :class="['absolute right-0 flex flex-col  items-center justify-center w-10 h-10 rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
-                        <Icon :name="showMenu ? 'octicon:chevron-up-12' : 'octicon:chevron-down-12' " class=" text-gray-400" size="20" />
+                        :class="[' rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
+                        <div class="p-2 bg-white rounded-full w-[50px]">
+                          <img src="../assets/images/icon_param.png" class="w-[30px] h-auto" alt="">
+
+                        </div>
+                        <!-- <Icon :name="showMenu ? 'octicon:chevron-up-12' : 'octicon:chevron-down-12' " class=" text-gray-400 absolute bottom-0 -right-1" size="20" /> -->
+
                     </div>
                 </div>
                 <!-- <mci-extension data-role="overlay" id="overlay-root"></mci-extension> -->

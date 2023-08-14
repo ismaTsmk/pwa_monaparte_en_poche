@@ -2,7 +2,7 @@
   <div class="scroll-smooth bg-gray-100">
     <Header />
     <!-- Le composant header -->
-    <main class="z-0 pt-24">
+    <main class="z-0 pt-20">
       <slot />
     </main>
     <!-- Le contenu de la page -->

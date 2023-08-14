@@ -17,13 +17,13 @@
           class="text-primary-500">Tom</span> <br> Du nouveau dans l'apparte</h1>
 
       <!-- Petite card -->
-      <div class="bg-white p-4 rounded shadow-md flex">
+      <div class="bg-white p-4 rounded-3xl shadow-md shadow-primary-300 drop-shadow-lg  flex ">
         <div class="w-3/5">
           <p class="text-secondary-500 font-bold">Trouvez les informations essentielles</p>
           <a href="#" class="text-secondary-500 ">Mon batiment &gt;</a>
         </div>
         <div class="w-2/5">
-          <img src="https://placehold.co/150x85" alt="Image" class="w-full h-auto">
+          <img src="../assets/images/maskgroup.png" alt="Image" class="w-full h-auto">
         </div>
       </div>
 
@@ -34,18 +34,19 @@
       </div>
 
       <!-- Bloc avec bouton "Ajouter favoris" et liste de thumbnails -->
-      <div class=" mt-4 flex items-end justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
-        <div class="border me-5 border-primary-500 border-dashed px-2 py-1 text-center flex justify-center items-center flex-col rounded-xl w-[70px] h-[70px] ">
+      <div
+        class=" mt-4 flex items-end justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
+        <div
+          class="border me-5 border-primary-500 border-dashed px-2 py-1 text-center flex justify-center items-center flex-col rounded-xl w-[70px] h-[70px] ">
           <Icon :name="'mingcute:add-fill'" :class="'text-[#FF409C]'" size="35" />
           <p class=" text-xs">Ajouter favoris</p>
         </div>
         <div class="flex  mt-4 ">
           <img v-for="avatar in avatars" :key="avatar.id"
             class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
-            :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar"
-            >
-            <!-- <img :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar" class=""> -->
-            <!-- <a data-v-a4011228="" href="/offres/25" class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover  hover:scale-110" style="background-image: url(https://i.pravatar.cc/150?u=fake@pravatar.com);" spellcheck="false"></a> -->
+            :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar">
+          <!-- <img :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar" class=""> -->
+          <!-- <a data-v-a4011228="" href="/offres/25" class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover  hover:scale-110" style="background-image: url(https://i.pravatar.cc/150?u=fake@pravatar.com);" spellcheck="false"></a> -->
           <!-- </div> -->
         </div>
       </div>
@@ -55,17 +56,30 @@
         <h2 class="text-left font-bold mb-2 text-2xl text-secondary-500">Information locale</h2>
         <div class="">
           <div v-for="event in events" :key="event.id" class="">
-            <div class="flex ">
-              <img src="https://placehold.co/75x75" alt="" class="rounded-full ">
+            <div class="ms-2  mb-3">
+              <!-- <img src="https://placehold.co/75x75" alt="" class="rounded-full "> -->
               <div>
-                <p>dfjhdfhbhj</p>
-                <p>dfjhdfhbhj</p>
+                <h5 class="text-xl text-secondary-500 font-bold">La fête des voisins approche</h5>
+                <p class="  font-light text-gray-600">Match: July, 20, 2020</p>
 
               </div>
             </div>
-            <div class="bg-white p-2 rounded-md shadow-md flex mb-2 min-h-[243px]" :style="{ backgroundImage: 'url(' + event.image + ')' }">
-              <p>dsfhdfbdffd</p>
+            <div class="relative mb-6">
+              <a href="/"
+                class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-64  hover:scale-105 rounded-xl shadow-md "
+                :style="{ backgroundImage: 'url(' + event.image + ')' }"
+                spellcheck="false"></a>
+              <div class="absolute top-2 right-4"><span href="#_"
+                  class="inline-block text-sm font-bold rounded-full px-4 py-1 uppercase  bg-white text-primary-600 border-primary-600 border">Participer</span>
+              </div>
+
             </div>
+            <!-- <div class="bg-white p-2 rounded-md shadow-md   h-[243px] mb-6 flex justify-end" :style="{ backgroundImage: 'url(' + event.image + ')' }"> -->
+            <!-- <div class="relative top-2 right-2"> -->
+            <!-- <p class="  px-4 py-2 h-fit  bg-white border border-primary-500">Participer</p> -->
+
+            <!-- </div> -->
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -130,6 +144,4 @@ export default {
 </script>
 
 
-<style scoped>
-@media (max-height: 900px) and (min-width: 1285px) {}
-</style> 
+<style scoped>@media (max-height: 900px) and (min-width: 1285px) {}</style> 
