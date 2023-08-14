@@ -1,12 +1,12 @@
 import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged} from 'firebase/auth'
-import useUser from './useUser'
+// import useUser from './useUser'
 import { User } from 'models/User'
 
 export default function() {
 
   const { $auth,firestore  } = useNuxtApp()
   // const user = useState<User | useUsernull>("fb_user", () => null)
-  const user$ = useUser()
+  // const user$ = useUser()
 
   const token = useCookie('token')
 
@@ -21,8 +21,9 @@ export default function() {
         console.log(user)
         // user.value = userCreds.user
         console.log('user ici') 
-        user$.value = user as User
-        token.value = user$.value.accessToken || ''
+        // user$.value = user as User
+        const userData:any = user
+        token.value = userData.value.accessToken || ''
 
         // console.log(user)
         // console.log('user$.value.email')
@@ -78,7 +79,7 @@ export default function() {
   }
 
   return {
-    user$,
+    // user$,
     // useUser,
     registerUser,
     loginUser,
