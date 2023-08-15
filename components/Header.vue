@@ -10,7 +10,7 @@
 
                             </div>
                     </div>
-                    <div @click="toogleOpenMenu"
+                    <NuxtLink :to="'/settings'"
                         :class="[' rounded-full cursor-pointer lg:hidden hover:bg-gray-100']">
                         <div class="p-2 bg-white rounded-full w-[50px]">
                           <img src="../assets/images/icon_param.png" class="w-[30px] h-auto" alt="">
@@ -18,7 +18,7 @@
                         </div>
                         <!-- <Icon :name="showMenu ? 'octicon:chevron-up-12' : 'octicon:chevron-down-12' " class=" text-gray-400 absolute bottom-0 -right-1" size="20" /> -->
 
-                    </div>
+                    </NuxtLink>
                 </div>
                 <!-- <mci-extension data-role="overlay" id="overlay-root"></mci-extension> -->
             </nav>
@@ -30,12 +30,12 @@
         </div>
 
     </section>
-    <!-- overlay div only show menu variable  --> 
+    <!-- overlay div only show menu variable  
     <div v-if="showMenu" @click="toogleOpenMenu" class="fixed inset-0 z-40 bg-black bg-opacity-50">
         <div class="bg-gray-50 rounded-3xl   shadow-sm  absolute  right-0 left-0  bottom-0 m-auto  top-1/3  w-[96%]  mx-auto  ">
                     <h2>ssssss</h2>
             </div>
-    </div>
+    </div> -->
     <!-- Carré pivotant avec logo -->
 </template>
 

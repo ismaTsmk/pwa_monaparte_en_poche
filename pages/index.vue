@@ -1,5 +1,5 @@
 <template>
-  <div class="flex  items-center justify-center  overflow-scroll  ">
+  <div class=" overflow-scroll  ">
     <!-- bg-gradient-to-r from-secondary-500 to-primary-600 -->
     <!-- <div class="text-center">
         <h1 class="text-4xl font-semibold text-primary-500 mb-6 ">Welcome to My <br> Home page  </h1>
@@ -35,24 +35,25 @@
 
       <!-- Bloc avec bouton "Ajouter favoris" et liste de thumbnails -->
       <div
-        class=" mt-4 flex items-end justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
+        class=" mt-4 flex items-start justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
         <div
           class="border me-5 border-primary-500 border-dashed px-2 py-1 text-center flex justify-center items-center flex-col rounded-xl w-[70px] h-[70px] ">
           <Icon :name="'mingcute:add-fill'" :class="'text-[#FF409C]'" size="35" />
           <p class=" text-xs">Ajouter favoris</p>
         </div>
-        <div class="flex  mt-4 ">
-          <img v-for="avatar in avatars" :key="avatar.id"
+        <div class="flex  px-3 ">
+          <div v-for="avatar in avatars" :key="avatar.id" class="mr-4 w-[70px]">
+            <img 
             class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
             :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar">
-          <!-- <img :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar" class=""> -->
-          <!-- <a data-v-a4011228="" href="/offres/25" class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover  hover:scale-110" style="background-image: url(https://i.pravatar.cc/150?u=fake@pravatar.com);" spellcheck="false"></a> -->
-          <!-- </div> -->
+            <p class="text-center">{{ avatar.id %2 == 0  ? "étage 1"   : "Bat: R4"}}   </p>
+          </div>
+
         </div>
       </div>
 
       <!-- Bloc "Information locale" avec liste de blocs scrollable -->
-      <div class="mt-4">
+      <div class="mt-4 ">
         <h2 class="text-left font-bold mb-2 text-2xl text-secondary-500">Information locale</h2>
         <div class="">
           <div v-for="event in events" :key="event.id" class="">
@@ -65,10 +66,10 @@
               </div>
             </div>
             <div class="relative mb-6">
-              <a href="/"
+              <NuxtLink href="/"
                 class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-64  hover:scale-105 rounded-xl shadow-md "
                 :style="{ backgroundImage: 'url(' + event.image + ')' }"
-                spellcheck="false"></a>
+                spellcheck="false"></NuxtLink>
               <div class="absolute top-2 right-4"><span href="#_"
                   class="inline-block text-sm font-bold rounded-full px-4 py-1 uppercase  bg-white text-primary-600 border-primary-600 border">Participer</span>
               </div>
