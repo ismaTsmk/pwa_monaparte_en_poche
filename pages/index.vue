@@ -125,8 +125,8 @@ export default {
         // ... add more avatars
       ],
       events: [
-        { id: 1, image: "/_nuxt/assets/images/tondeuse.jpg", title: "Aider votre voisine", date: "15/08/2023 15:45" },
-        { id: 2, image: "/_nuxt/assets/images/course.jpg", title: "Porter les courses", date: "24/08/2023 17:59" },
+        { id: 1, image: "https://tismatek.com/storage/tondeuse.jpg", title: "Aider votre voisine", date: "15/08/2023 15:45" },
+        { id: 2, image: "https://tismatek.com/storage/course.jpg", title: "Porter les courses", date: "24/08/2023 17:59" },
         { id: 3, image: "https://source.unsplash.com/featured/343x246", title: "La fête des voisins approche", date: "01/09/2023 19:25" },
         // ... add more events
       ],
