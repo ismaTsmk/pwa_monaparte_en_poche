@@ -51,8 +51,8 @@ export default function() {
     try {
       const {user} = await signInWithEmailAndPassword($auth as Auth, email, password)
       if (user) {
-        user$.value = user as User
-        token.value = user$.value.accessToken || ''
+        // user$.value = user as User
+        // token.value = user$.value.accessToken || ''
         return true
       }
     } catch (error: unknown) {
