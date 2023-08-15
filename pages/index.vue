@@ -35,18 +35,22 @@
 
       <!-- Bloc avec bouton "Ajouter favoris" et liste de thumbnails -->
       <div
-        class=" mt-4 flex items-start justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden">
+        class="  flex items-start justify-start bg-emersald-300 max-w-[100vw] px-2 overflow-x-scroll overflow-hidden py-6">
         <div
           class="border me-5 border-primary-500 border-dashed px-2 py-1 text-center flex justify-center items-center flex-col rounded-xl w-[70px] h-[70px] ">
           <Icon :name="'mingcute:add-fill'" :class="'text-[#FF409C]'" size="35" />
           <p class=" text-xs">Ajouter favoris</p>
         </div>
         <div class="flex  px-3 ">
-          <div v-for="avatar in avatars" :key="avatar.id" class="mr-4 w-[70px]">
+          <div v-for="avatar in avatars" :key="avatar.id" class="mr-4 w-[70px] relative ">
             <img 
             class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
             :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar">
-            <p class="text-center">{{ avatar.id %2 == 0  ? "étage 1"   : "Bat: R4"}}   </p>
+            <div v-if="avatar.id %2 == 0" class="bg-red-400  rounded-full   flex justify-center items-center  w-[35px] h-[35px] absolute -top-4 -right-2">
+              <Icon name="mdi:help-outline" class="text-white " size="23" />
+
+            </div>
+            <p class="text-center">{{ avatar.id % 2 == 0  ? "étage 1"   : "Bat: R4"}}   </p>
           </div>
 
         </div>
@@ -60,8 +64,8 @@
             <div class="ms-2  mb-3">
               <!-- <img src="https://placehold.co/75x75" alt="" class="rounded-full "> -->
               <div>
-                <h5 class="text-xl text-secondary-500 font-bold">La fête des voisins approche</h5>
-                <p class="  font-light text-gray-600">Match: July, 20, 2020</p>
+                <h5 class="text-xl text-secondary-500 font-bold">{{event.title}}</h5>
+                <p class="  font-light text-gray-600">{{event.date}}</p>
 
               </div>
             </div>
@@ -112,18 +116,18 @@ export default {
         { id: 1, image: "https://placehold.co/70x70" },
         { id: 2, image: "https://placehold.co/70x70" },
         { id: 3, image: "https://placehold.co/70x70" },
-        { id: 3, image: "https://placehold.co/70x70" },
-        { id: 3, image: "https://placehold.co/70x70" },
-        { id: 3, image: "https://placehold.co/70x70" },
-        { id: 3, image: "https://placehold.co/70x70" },
-        { id: 3, image: "https://placehold.co/70x70" },
+        { id: 4, image: "https://placehold.co/70x70" },
+        { id: 5, image: "https://placehold.co/70x70" },
+        { id: 6, image: "https://placehold.co/70x70" },
+        { id: 7, image: "https://placehold.co/70x70" },
+        { id: 8, image: "https://placehold.co/70x70" },
 
         // ... add more avatars
       ],
       events: [
-        { id: 1, image: "https://source.unsplash.com/featured/343x246", title: "Événement 1", date: "Date 1" },
-        { id: 2, image: "https://source.unsplash.com/featured/343x246", title: "Événement 2", date: "Date 2" },
-        { id: 3, image: "https://source.unsplash.com/featured/343x246", title: "Événement 3", date: "Date 3" },
+        { id: 1, image: "/_nuxt/assets/images/tondeuse.jpg", title: "Aider votre voisine", date: "15/08/2023 15:45" },
+        { id: 2, image: "/_nuxt/assets/images/course.jpg", title: "Porter les courses", date: "24/08/2023 17:59" },
+        { id: 3, image: "https://source.unsplash.com/featured/343x246", title: "La fête des voisins approche", date: "01/09/2023 19:25" },
         // ... add more events
       ],
 
