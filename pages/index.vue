@@ -95,10 +95,20 @@
       <!-- Open the modal using ID.showModal() method -->
 <!-- <button class="btn" onclick="my_modal_2.showModal()">open modal</button> -->
 <dialog id="my_modal_2" class="modal">
-  <form method="dialog" class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
+  <div  class="modal-box">
+    <h3 class="font-bold text-lg">Evennement selectionner </h3>
     <p class="py-4">Press ESC key or click outside to close</p>
-  </form>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm " >Annuler</button>
+
+    </form>
+    <button class="btn btn-sm bg-primary-500 text-white" type="submit">Participer</button>
+
+  </div>
+  </div>
+
+
   <form method="dialog" class="modal-backdrop">
     <button>close</button>
   </form>
