@@ -1,17 +1,19 @@
-import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged} from 'firebase/auth'
+import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut } from 'firebase/auth'
+import { getFirestore, doc, setDoc, getDoc,getDocs ,collection,query,where, orderBy } from 'firebase/firestore'
+
 // import useUser from './useUser'
-import { User } from 'models/User'
+// import { User } from 'models/User'
 
 export default function() {
 
-  const { $auth,firestore  } = useNuxtApp()
+  const { $auth } = useNuxtApp()
+  const firestore = getFirestore()
+
   // const user = useState<User | useUsernull>("fb_user", () => null)
   // const user$ = useUser()
 
   const token = useCookie('token')
-
-
-  
+  const events = collection(firestore, "events");
 
 
   const registerUser = async (email: string, password: string): Promise<boolean> => {
@@ -78,12 +80,112 @@ export default function() {
     });
   }
 
+  // const getAllDocuments = async (collectionName: string): Promise<any[]> => {
+  //   try {
+  //     console.log('Fetching documents from collection:', collectionName);
+  //     const querySnapshot = await getDocs(collection(firestore, collectionName));
+  //     const documents = querySnapshot.docs.map(doc => doc.data());
+  //     console.log('Documents retrieved:', documents);
+  //     return documents;
+  //   } catch (error: unknown) {
+  //     if (error instanceof Error) {
+  //       console.error('Error fetching documents:', error);
+  //       console.log('erreur ')
+  //     }
+  //     return [];
+  //   }
+  // }
+  const getAllDocuments = async (
+    collectionName: string,
+    filters?: { field: string, operator: any, value: any }[],
+    sortField?: string,
+    sortOrder?: 'asc' | 'desc'
+  ): Promise<any[]> => {
+    try {
+      console.log('Fetching documents from collection:', collectionName);
+      // let q = collection(firestore, collectionName);
+      let q = query(collection(firestore, collectionName));
+
+  
+      if (filters && Array.isArray(filters) && filters.length > 0) {
+        filters.forEach(filter => {
+          q = query(q, where(filter.field, filter.operator, filter.value));
+        });
+      }
+  
+      if (sortField && sortOrder) {
+        q = query(q, orderBy(sortField, sortOrder));
+      }
+  
+      const querySnapshot = await getDocs(q);
+      const documents = querySnapshot.docs.map(doc => doc.data());
+      console.log('Documents retrieved:', documents);
+      return documents;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error fetching documents:', error);
+      }
+      return [];
+    }
+  }
+  
+  
+  
+  const getDocument = async (collection: string, documentId: string): Promise<any | null> => {
+    try {
+      const documentRef = doc(firestore, collection, documentId)
+      const documentSnapshot = await getDoc(documentRef)
+      if (documentSnapshot.exists()) {
+        return documentSnapshot.data()
+      } else {
+        return null
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // handle error
+      }
+      return null
+    }
+  }
+
+  const insertOrUpdateDocument = async (collection: string, documentId: string, data: any): Promise<boolean> => {
+    try {
+      const documentRef = doc(firestore, collection, documentId)
+      await setDoc(documentRef, data, { merge: true })
+      return true
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // handle error
+      }
+      return false
+    }
+  }
+
+  const logoutUser = async (): Promise<void> => {
+    try {
+      console.log('logout')
+      console.log('logout')
+      console.log('logout')
+
+      await signOut($auth as Auth); // Déconnexion de l'utilisateur
+      // Vous pouvez effectuer d'autres actions ici après la déconnexion
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // Gérer les erreurs liées à la déconnexion
+      }
+    }
+  }
+
   return {
     // user$,
     // useUser,
+    getAllDocuments,
+    getDocument,
+    insertOrUpdateDocument,
     registerUser,
     loginUser,
     token,
-    getUser
+    getUser,
+    logoutUser
   }
 }

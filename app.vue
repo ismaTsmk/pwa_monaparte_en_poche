@@ -1,13 +1,17 @@
 <template>
-  <div>
+  <div >
     <VitePwaManifest />
-    <NuxtLoadingIndicator />
-    <NuxtLayout >
-        <NuxtPage v-if="userIsLoggedIn"/>
-      <div v-else>
-        <NuxtLink :to="'/login'">Aller à la page de connexion</NuxtLink>
+    <NuxtLoadingIndicator  />
+    <div v-if="isLoading" class="h-screen flex items-center justify-center">
+      <span class="loading loading-infinity loading-lg"></span>
 
-      </div>
+    </div>
+    <NuxtLayout v-else-if="userAuth">
+        <NuxtPage />
+
+    </NuxtLayout>
+    <NuxtLayout name="guest"  v-else>
+        <Login/>
     </NuxtLayout>
 
   </div>
@@ -18,43 +22,46 @@ import Login from '@/pages/login.vue';
 // import { useUser } from '@/composables/useUser'
 // const token = useCookie('token')
 
+import { onAuthStateChanged } from 'firebase/auth'; // Importez onAuthStateChanged
 
 export default {
-    methods: {
-        userIsLoggedIn() {
-          const {getUser} = useFirebaseAuth()
-          const { $auth  } = useNuxtApp()
-          console.log('iciciciiciciciciicici ___________')
-          getUser().then(isLoggedIn => {
-          if (isLoggedIn) {
-            console.log("L'utilisateur est connecté");
-            return true
-          } else {
-            console.log("L'utilisateur n'est pas connecté");
-            return false 
-          }
-          // return isLoggedIn
-        });
-          // const response  = getUser().then(
-          //   userData => {
-          //     console.log(userData)
-          //   }
-          //  )
-          // console.log(response)
-          // console.log(token.value)
-            // Utilisez ici une condition pour vérifier si l'utilisateur est connecté
-            // Par exemple, vérifiez si this.$auth.loggedIn est vrai
-            // if (useUser().value === 'undefined') {
-            //   console.log("userIsLoggedIn false")
-            //   console.log(useUser())
-            //     return false;
-            // }
-            // console.log("userIsLoggedIn true")
-            // console.log(useUser())
+  // computed: {
+  //   userAuth : false,
+  // },
+  data () {
+    return {
+      userAuth : false,
+      isLoading: true, // Ajoutez cette variable
 
-            // return true;
+    }
+  },
+    methods: {
+      checkUserAuth() {
+      const { $auth } = useNuxtApp();
+      onAuthStateChanged($auth, (user) => {
+        if (user) {
+          
+          console.log("L'utilisateur est connecté");
+          this.userAuth = true;
+          console.log(this.userAuth)
+
+        } else {
+          console.log("L'utilisateur n'est pas connecté");
+          this.userAuth = false;
+          console.log(this.userAuth)
+
         }
+        this.isLoading = false; // La vérification de connexion est terminée, n'oubliez pas de mettre isLoading à false
+
+      });
     },
+    },
+    mounted() {
+      console.log('mounted')
+    this.checkUserAuth(this.userAuth); // Appelez la fonction pour vérifier l'authentification lors du montage du composant
+    // console.log(this.userAuth)
+
+  },
     components: { Login }
 };
 </script>

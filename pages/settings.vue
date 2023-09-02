@@ -2,7 +2,7 @@
     <main class="flex min-h-full py-12 items-center justify-center bg-gradient-to-r from-secondary-400 to-primary-600 ">
       <div class="text-center">
         <h1 class="text-4xl font-semibold text-white mb-6 ">Parametre de <br> votre profil </h1>
-        <p class="text-lg text-white mb-8">Discover the amazing features of our platform.</p>
+        <p class="text-lg text-white mb-8">Manager ici vos préferences</p>
         <!-- <a
           href="https://example.com"
           class="inline-block bg-white text-blue-500 hover:bg-blue-400 px-6 py-3 rounded-lg font-semibold transition duration-300"
@@ -13,6 +13,10 @@
             <toggle :value="toggleValue" @input="doSomething($event)" />
             <p class="text-lg font-semibold text-white">{{toggleValue ? "Public" : "Priver"}}</p>
         </div>
+
+        <!-- btn logout  -->
+        <button class="btn btn-sm mt-4" @click="logout">SE Déconnecter</button>
+
 
       </div>
     </main>
@@ -28,6 +32,14 @@ export default {
             console.log(this.toggleValue);
             this.toggleValue = event;
         },
+        async logout () {
+            const {logoutUser}  = useFirebaseAuth()
+
+            const response:any  = await logoutUser()
+            if (response) {
+                console.log('logout')
+            }
+        }
     },
     components: { },
     data() {

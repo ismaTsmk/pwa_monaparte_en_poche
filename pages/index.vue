@@ -43,14 +43,15 @@
         </div>
         <div class="flex  px-3 ">
           <div v-for="avatar in avatars" :key="avatar.id" class="mr-4 w-[70px] relative ">
-            <img 
-            class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
-            :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar">
-            <div v-if="avatar.id %2 == 0" class="bg-red-400  rounded-full   flex justify-center items-center  w-[35px] h-[35px] absolute -top-4 -right-2">
+            <img
+              class="rounded-2xl bg-gray-300 flex items-center justify-center mr-4 w-[70px] h-[70px] border border-primary-500"
+              :src="'https://i.pravatar.cc/150?u=fake@pravatar.com'" alt="Avatar">
+            <div v-if="avatar.id % 2 == 0"
+              class="bg-red-400  rounded-full   flex justify-center items-center  w-[35px] h-[35px] absolute -top-4 -right-2">
               <Icon name="mdi:help-outline" class="text-white " size="23" />
 
             </div>
-            <p class="text-center">{{ avatar.id % 2 == 0  ? "étage 1"   : "Bat: R4"}}   </p>
+            <p class="text-center">{{ avatar.id % 2 == 0 ? "étage 1" : "Bat: R4" }} </p>
           </div>
 
         </div>
@@ -60,20 +61,19 @@
       <div class="mt-4 ">
         <h2 class="text-left font-bold mb-2 text-2xl text-secondary-500">Information locale</h2>
         <div class="">
-          <div v-for="event in events" :key="event.id" class="">
+          <div v-for="event in eventsFirebaseCollections" :key="event.id" class="">
             <div class="ms-2  mb-3">
               <!-- <img src="https://placehold.co/75x75" alt="" class="rounded-full "> -->
               <div>
-                <h5 class="text-xl text-secondary-500 font-bold">{{event.title}}</h5>
-                <p class="  font-light text-gray-600">{{event.date}}</p>
+                <h5 class="text-xl text-secondary-500 font-bold">{{ event.title }}</h5>
+                <p class="  font-light text-gray-600">{{ convertTimeStampToFrenchDate(event.date.seconds) }}</p>
 
               </div>
             </div>
             <div class="relative mb-6">
               <NuxtLink href="/"
                 class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-64  hover:scale-105 rounded-xl shadow-md "
-                :style="{ backgroundImage: 'url(' + event.image + ')' }"
-                spellcheck="false"></NuxtLink>
+                :style="{ backgroundImage: 'url(' + event.image + ')' }" spellcheck="false"></NuxtLink>
               <div class="absolute top-2 right-4"><span href="#_"
                   class="inline-block text-sm font-bold rounded-full px-4 py-1 uppercase  bg-white text-primary-600 border-primary-600 border">Participer</span>
               </div>
@@ -99,15 +99,16 @@
 </template>
 
 <script lang="ts">
-import firebase from "firebase/app";
+import { format } from 'date-fns'
 
-// import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
-
-// SwiperCore.use([EffectCoverflow, Pagination]);
 
 export default {
   name: "index",
   methods: {
+    convertTimeStampToFrenchDate(timestamp: any) {
+      const date = new Date(timestamp * 1000);
+      return format(date, "dd/MM/yyyy HH:mm:ss");
+    },
   },
   components: {},
   data() {
@@ -124,17 +125,18 @@ export default {
 
         // ... add more avatars
       ],
-      events: [
-        { id: 1, image: "https://tismatek.com/storage/tondeuse.jpg", title: "Aider votre voisine", date: "15/08/2023 15:45" },
-        { id: 2, image: "https://tismatek.com/storage/course.jpg", title: "Porter les courses", date: "24/08/2023 17:59" },
-        { id: 3, image: "https://source.unsplash.com/featured/343x246", title: "La fête des voisins approche", date: "01/09/2023 19:25" },
-        // ... add more events
-      ],
-
-
+      eventsFirebaseCollections: [] as { id: number, image: string, title: string, date: { seconds: any, nanoseconds: any } }[],
     }
   },
-  mounted() {
+  async mounted() {
+    const { getAllDocuments } = useFirebaseAuth()
+
+    //  const response = await  getAllDocuments('events')
+    const response = await getAllDocuments('events',[], 'date', 'asc');
+    this.eventsFirebaseCollections = response
+    console.log(response)
+
+    //  this.eventsFirebaseCollections = response 
     console.log("mounted1234")
     // const { $auth } = useNuxtApp()
     // console.log($auth.currentUser.email)
@@ -143,10 +145,13 @@ export default {
     console.log("mounted")
     // console.log(useUser().value?.email)
     // console.log(useUser.arguments.email)
-  }
+  },
+
 
 };
 </script>
 
 
-<style scoped>@media (max-height: 900px) and (min-width: 1285px) {}</style> 
+<style scoped>
+@media (max-height: 900px) and (min-width: 1285px) {}
+</style> 
