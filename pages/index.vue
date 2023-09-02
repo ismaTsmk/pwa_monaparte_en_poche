@@ -70,12 +70,15 @@
 
               </div>
             </div>
-            <div class="relative mb-6">
+            <div class="relative mb-6"  @click="openModal">
               <NuxtLink href="/"
                 class="block w-full transition duration-300 ease-in-out transform bg-center bg-cover h-64  hover:scale-105 rounded-xl shadow-md "
                 :style="{ backgroundImage: 'url(' + event.image + ')' }" spellcheck="false"></NuxtLink>
-              <div class="absolute top-2 right-4"><span href="#_"
-                  class="inline-block text-sm font-bold rounded-full px-4 py-1 uppercase  bg-white text-primary-600 border-primary-600 border">Participer</span>
+              <div class="absolute top-2 right-4">
+                <button onclick="my_modal_2.showModal()" class=" btn btn-sm  bg-white font-bold text-primary-600 border-primary-600 ">
+                  Participer
+                </button>
+
               </div>
 
             </div>
@@ -88,6 +91,18 @@
           </div>
         </div>
       </div>
+
+      <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_2.showModal()">open modal</button> -->
+<dialog id="my_modal_2" class="modal">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-lg">Hello!</h3>
+    <p class="py-4">Press ESC key or click outside to close</p>
+  </form>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
 
 
 
@@ -108,6 +123,13 @@ export default {
     convertTimeStampToFrenchDate(timestamp: any) {
       const date = new Date(timestamp * 1000);
       return format(date, "dd/MM/yyyy HH:mm:ss");
+    },
+    openModal() {
+      // Recherchez le modal par son identifiant unique et ouvrez-le
+      const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
+      if (modal) {
+        modal.showModal();
+      }
     },
   },
   components: {},
