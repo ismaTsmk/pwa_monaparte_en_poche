@@ -1,8 +1,16 @@
-import { useState } from '#app'
-import { User } from '~~/models/User'
+// useUser.ts
+import { ref } from 'vue';
+import { User } from '~~/models/User';
 
-export default function () {
+export function useUser() {
+  const userData = ref<User | null>(null);
 
-  
-  return useState<User | null>('user', () => null)
+  const  updateUserData = (user: User | null) => {
+    userData.value = user;
+  };
+
+  return {
+    userData,
+    updateUserData,
+  };
 }
