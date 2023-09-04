@@ -29,16 +29,16 @@ export default function() {
           isPublic,
           phoneNumber,
         };
-        console.log('debut de insertOrUpdateDocument');
+        // console.log('debut de insertOrUpdateDocument');
 
         await insertOrUpdateDocument('users', user.uid, userData); // Supposons que 'users' est votre collection Firestore pour les utilisateurs
-        console.log('fin de insertOrUpdateDocument');
+        // console.log('fin de insertOrUpdateDocument');
 
         // Reste de votre code...
   
         return true;
       } else {
-        console.log('Aucun utilisateur créé');
+        // console.log('Aucun utilisateur créé');
         return false;
       }
     } catch (error: unknown) {
@@ -104,10 +104,10 @@ export default function() {
     return new Promise((resolve, reject) => {
       onAuthStateChanged($auth as Auth, (user: any) => {
         if (user) {
-          console.log(user);
+          // console.log(user);
           resolve(true);
         } else {
-          console.log('Aucun utilisateur connecté');
+          // console.log('Aucun utilisateur connecté');
           resolve(false);
         }
       });
@@ -121,7 +121,7 @@ export default function() {
     sortOrder?: 'asc' | 'desc'
   ): Promise<any[]> => {
     try {
-      console.log('Fetching documents from collection:', collectionName);
+      console.log('recuperation en cours', collectionName);
       // let q = collection(firestore, collectionName);
       let q = query(collection(firestore, collectionName));
 
@@ -138,7 +138,7 @@ export default function() {
   
       const querySnapshot = await getDocs(q);
       const documents = querySnapshot.docs.map(doc => doc.data());
-      console.log('Documents retrieved:', documents);
+      console.log('Documents recuperer:', documents);
       return documents;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -170,9 +170,9 @@ export default function() {
   const insertOrUpdateDocument = async (collection: string, documentId: string, data: any): Promise<boolean> => {
     try {
       const documentRef = doc(firestore, collection, documentId );
-      console.log('Données à enregistrer :', data);
+      // console.log('Données à enregistrer :', data);
       setDoc(documentRef, data, { merge: true });
-      console.log('Enregistrement réussi.');
+      // console.log('Enregistrement réussi.');
       return true;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -186,9 +186,6 @@ export default function() {
   const logoutUser = async (): Promise<void> => {
     try {
       console.log('logout')
-      console.log('logout')
-      console.log('logout')
-
       await signOut($auth as Auth); // Déconnexion de l'utilisateur
       // Vous pouvez effectuer d'autres actions ici après la déconnexion
     } catch (error: unknown) {

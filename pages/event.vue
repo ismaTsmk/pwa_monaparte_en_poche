@@ -1,7 +1,7 @@
 <template>
     <main class="flex min-h-full py-24 items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 ">
       <div class="text-center">
-        <h1 class="text-4xl font-semibold text-white mb-6 ">Welcome to My <br> Event page </h1>
+        <h1 class="text-4xl font-semibold text-white mb-6 ">Welcome to My <br> Event page {{ currentUser == null ? '' : currentUser.pseudo }} </h1>
         <p class="text-lg text-white mb-8">Discover the amazing features of our platform.</p>
         <a
           href="https://example.com"
@@ -23,9 +23,20 @@ export default {
     components: { },
     data() {
         return {
-
+          currentUser : null as any,
 
         }
+    },
+    mounted() {
+      const {  userData } = useUser(); // Assurez-vous d'importer correctement le chemin du composable
+      this.currentUser = userData
+      console.log('this.currentUser')
+
+      console.log(this.currentUser.pseudo)
+      console.log(this.currentUser)
+      console.log(this.currentUser)
+
+
     },
 
 };

@@ -22,6 +22,7 @@ import Login from '@/pages/login.vue';
 // import { useUser } from '@/composables/useUser'
 // const token = useCookie('token')
 // import useUser from '@/composables/useUser'; // Assurez-vous d'importer correctement le chemin du composable
+import { mapMutations } from 'vuex'; // Importez mapMutations pour utiliser les mutations du store Vuex
 
 
 import { onAuthStateChanged } from 'firebase/auth'; // Importez onAuthStateChanged
@@ -38,6 +39,8 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('user', ['setUser']), // Utilisez mapMutations pour accéder à la mutation setUser du store Vuex
+
     checkUserAuth() {
       const { $auth } = useNuxtApp();
       const { updateUserData, userData } = useUser(); // Assurez-vous d'importer correctement le chemin du composable
@@ -49,15 +52,15 @@ export default {
 
         if (userData) {
           // Mettre à jour les données utilisateur
-          // updateUserData({
-          //   uid: user.uid,
-          //   email: user.email,
-          //   pseudo: response.pseudo,
-          //   age: response.age,
-          //   isPublic: response.isPublic,
-          //   phoneNumber: response.phoneNumber,
-          //   isAuthenticated: true,
-          // });
+          updateUserData({
+            uid: user.uid,
+            email: user.email,
+            pseudo: response.pseudo,
+            age: response.age,
+            isPublic: response.isPublic,
+            phoneNumber: response.phoneNumber,
+            isAuthenticated: true,
+          });
           // console.log(userData)
 
           // console.log("L'utilisateur est connecté");

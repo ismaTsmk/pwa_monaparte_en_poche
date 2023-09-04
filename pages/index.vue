@@ -14,7 +14,7 @@
     <div class="bg-gray-100 p-4">
       <!-- Titre centré en gras avec couleurs primaires et secondaires -->
       <h1 class="text-center font-bold text-primary mb-4 text-secondary-500 text-2xl">Salut <span
-          class="text-primary-500">Tom</span> <br> Du nouveau dans l'apparte</h1>
+          class="text-primary-500">{{ currentUser == null ? '' : currentUser.pseudo }}</span> <br> Du nouveau dans l'apparte</h1>
 
       <!-- Petite card -->
       <div class="bg-white p-4 rounded-3xl shadow-md shadow-primary-300 drop-shadow-lg  flex ">
@@ -125,7 +125,7 @@
 
 <script lang="ts">
 import { format } from 'date-fns'
-
+import { User } from '~/models/User';
 
 export default {
   name: "index",
@@ -145,6 +145,7 @@ export default {
   components: {},
   data() {
     return {
+      currentUser : null as any,
       avatars: [
         { id: 1, image: "https://placehold.co/70x70" },
         { id: 2, image: "https://placehold.co/70x70" },
@@ -160,19 +161,31 @@ export default {
       eventsFirebaseCollections: [] as { id: number, image: string, title: string, date: { seconds: any, nanoseconds: any } }[],
     }
   },
+  watch: {
+    currentUser: {
+      handler(val: User) {
+        console.log('user  : ')
+
+        console.log(val)
+      },
+      deep: true,
+    },
+  },
   async mounted() {
     const { getAllDocuments } = useFirebaseAuth()
+    const {  userData } = useUser(); // Assurez-vous d'importer correctement le chemin du composable
+
+    this.currentUser = userData
+
 
     //  const response = await  getAllDocuments('events')
     const response = await getAllDocuments('events',[], 'date', 'asc');
     this.eventsFirebaseCollections = response
-    console.log(response)
+    // console.log(response)
 
     //  this.eventsFirebaseCollections = response 
-    console.log("mounted1234")
     // const { $auth } = useNuxtApp()
     // console.log($auth.currentUser.email)
-    // console.log("mounted2222")
 
     console.log("mounted")
     // console.log(useUser().value?.email)
