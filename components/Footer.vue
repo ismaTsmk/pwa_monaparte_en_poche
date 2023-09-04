@@ -6,9 +6,9 @@
       :class="[showMenu2 ? ' opacity-100 z-40' : 'z-0', 'opacity-0 fixed inset-0  transition-opacity duration-100']">
       <div class="bg-black bg-opacity-50 absolute min-h-screen min-w-full" @click="toogleOpenMenu"></div>
       <div
-        :class="[ ' bg-white rounded-3xl   shadow-sm  absolute  right-0 left-0  bottom-10 m-auto  top-1/3  w-[96%]  mx-auto   z-50 ']">
-        <div class=" grid grid-cols-2 gap-4 bg-emerald-20 items-center justify-center mt-10">
-          <div v-for="(item,index) in services" class=" p-10 bg-gray-50 rounded-full border border-indigo-300 shadow-md hover:shadow-xl hover:bg-gray-100  shadow-orange-200 text-center ">
+        :class="[ ' bg-white rounded-3xl   shadow-sm  absolute  right-0 left-0  bottom-10 m-auto  top-2/4  w-[96%]  mx-auto   z-50 ']">
+        <div class="flex  flex-col  bg-emerald-20 items-center justify-center  px-10  bg-emedrald-300 h-full ">
+          <div v-for="(item,index) in services" class="my-4  px-10 py-5 bg-gray-50 rounded-full border border-indigo-300 shadow-md hover:shadow-xl hover:bg-gray-100  shadow-orange-200 text-center  w-full">
             <p>{{ item.name }}</p>
           </div>
         </div>
@@ -57,7 +57,7 @@ const toogleOpenMenu = () => {
 const services  = ref([
   { name: "AIDE COURSE", nameIcon: 'octicon:home-16', link: '/', active: true },
   { name: "SOUTIEN MORALE", nameIcon: 'carbon:event', link: '/event', active: false },
-  { name: "BRICOLAGE", nameIcon: 'mdi:help-outline', link: '/help', active: false },
+  // { name: "BRICOLAGE", nameIcon: 'mdi:help-outline', link: '/help', active: false },
   { name: "AUTRES", nameIcon: 'solar:map-bold-duotone', link: '/discover', active: false },
 ]);
 

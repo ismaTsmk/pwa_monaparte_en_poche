@@ -50,8 +50,9 @@ export default {
 
         const response = await getDocument('users', user.uid);
 
-        if (userData) {
+        if (response) {
           // Mettre à jour les données utilisateur
+
           updateUserData({
             uid: user.uid,
             email: user.email,
@@ -61,25 +62,26 @@ export default {
             phoneNumber: response.phoneNumber,
             isAuthenticated: true,
           });
-          // console.log(userData)
+          // console.log('userData')
+          // console.log(userData.email)
 
           // console.log("L'utilisateur est connecté");
           this.userAuth = true;
-          console.log(this.userAuth);
+          // console.log(this.userAuth);
         } else {
           console.log("Données utilisateur introuvables dans Firestore");
         }
 
 
 
-          console.log("L'utilisateur est connecté");
+          // console.log("L'utilisateur est connecté");
           this.userAuth = true;
-          console.log(this.userAuth)
+          // console.log(this.userAuth)
 
         } else {
           console.log("L'utilisateur n'est pas connecté");
           this.userAuth = false;
-          console.log(this.userAuth)
+          // console.log(this.userAuth)
 
         }
         this.isLoading = false; // La vérification de connexion est terminée, n'oubliez pas de mettre isLoading à false

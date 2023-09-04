@@ -1,5 +1,5 @@
 import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut, updateProfile } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDoc,getDocs ,collection,query,where, orderBy } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, getDoc,getDocs ,collection,query,where, orderBy, FirestoreError } from 'firebase/firestore'
 
 // import useUser from './useUser'
 // import { User } from 'models/User'
@@ -8,39 +8,87 @@ export default function() {
 
   const { $auth } = useNuxtApp()
   const firestore = getFirestore()
+  const { updateUserData } = useUser(); // Assurez-vous d'importer correctement le chemin du composable
 
   // const user = useState<User | useUsernull>("fb_user", () => null)
   // const user$ = useUser()
 
   const token = useCookie('token')
   // const events = collection(firestore, "events");
-  const registerUser = async (email: string, password: string, pseudo: string, age: number, isPublic: boolean, phoneNumber: string): Promise<boolean> => {
+  const registerUser = async (email: string, password: string, pseudo: string, age: number, isPublic: boolean, phoneNumber: string): Promise<any> => {
     try {
-      const { user } = await createUserWithEmailAndPassword($auth as Auth, email, password);
-      if (user) {
-        // Mise à jour du profil Firebase avec les informations supplémentaires
-        await updateProfile(user, { displayName: pseudo });
-        
-        // Enregistrement des autres informations dans Firestore
+      // const { user } = await createUserWithEmailAndPassword($auth as Auth, email, password);
+
+      createUserWithEmailAndPassword($auth as Auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+
+        const user = userCredential.user;
         const userData = {
-          email,
-          pseudo,
-          age,
-          isPublic,
-          phoneNumber,
+          email : user.email,
+          pseudo : pseudo,
+          age : age,
+          isPublic : isPublic,
+          phoneNumber : phoneNumber,
         };
-        // console.log('debut de insertOrUpdateDocument');
+        updateUserData({
+          uid: user.uid,
+          email: email,
+          pseudo: pseudo,
+          age: age,
+          isPublic: isPublic,
+          phoneNumber: phoneNumber,
+          isAuthenticated: true,
+        });
+        updateProfile(user, { displayName: pseudo }).then(() => {
+          // Profile updated!
+          setTimeout(() => {
 
-        await insertOrUpdateDocument('users', user.uid, userData); // Supposons que 'users' est votre collection Firestore pour les utilisateurs
-        // console.log('fin de insertOrUpdateDocument');
+          insertOrUpdateDocument('users', user.uid, userData);
+          }, 3000);
 
-        // Reste de votre code...
+          }).catch((error) => {
+            // An error occurred
+            console.log(error);
+            });
+
+
+
+        // ...
+        return true
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        return false
+      });
+
+      // if (user) {
+      //   // Mise à jour du profil Firebase avec les informations supplémentaires
+
+      //   // Enregistrement des autres informations dans Firestore
+      //   // const userData = {
+      //   //   email : user.email,
+      //   //   pseudo : pseudo,
+      //   //   age : age,
+      //   //   isPublic : isPublic,
+      //   //   phoneNumber : phoneNumber,
+      //   // };
+
+
+      //   // console.log('debut de insertOrUpdateDocument');
+
+      //   //  await insertOrUpdateDocument('users', user.uid, userData); // Supposons que 'users' est votre collection Firestore pour les utilisateurs
+      //   // console.log('fin de insertOrUpdateDocument');
+
+      //   // Reste de votre code...
   
-        return true;
-      } else {
-        // console.log('Aucun utilisateur créé');
-        return false;
-      }
+      //   return true;
+      // } else {
+      //   // console.log('Aucun utilisateur créé');
+      //   return false;
+      // }
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Gérer les erreurs liées à l'inscription
@@ -48,6 +96,17 @@ export default function() {
       return false;
     }
   }
+  const waitUntilUserIsCreated = (user: any,userData:any) => {
+    return new Promise<void>((resolve) => {
+      const unsubscribe = onAuthStateChanged($auth as Auth, (authUser) => {
+        if (authUser && authUser.uid === user.uid) {
+          insertOrUpdateDocument('users', user.uid, userData);
+          unsubscribe();
+          resolve();
+        }
+      });
+    });
+  };
   
 
   // const registerUser = async (email: string, password: string): Promise<boolean> => {
@@ -167,22 +226,43 @@ export default function() {
     }
   }
 
-  const insertOrUpdateDocument = async (collection: string, documentId: string, data: any): Promise<boolean> => {
+  // const insertOrUpdateDocument = async (collection: string, documentId: string, data: any): Promise<boolean> => {
+  //   try {
+  //     const documentRef = doc(firestore, collection, documentId );
+  //     // console.log('Données à enregistrer :', data);
+  //     setDoc(documentRef, data, { merge: true });
+  //     // console.log('Enregistrement réussi.');
+  //     return true;
+  //   } catch (error: unknown) {
+  //     if (error instanceof Error) {
+  //       console.error('Erreur lors de l\'enregistrement :', error);
+  //     }
+  //     return false;
+  //   }
+  // }
+  
+  const insertOrUpdateDocument = async (
+    collection: string,
+    documentId: string,
+    data: any
+  ): Promise<boolean> => {
     try {
-      const documentRef = doc(firestore, collection, documentId );
-      // console.log('Données à enregistrer :', data);
-      setDoc(documentRef, data, { merge: true });
-      // console.log('Enregistrement réussi.');
+      
+      const documentRef = doc(firestore, collection, documentId);
+      await setDoc(documentRef, data, { merge: true });
+      console.log('Enregistrement réussi.');
       return true;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Erreur lors de l\'enregistrement :', error);
+    } catch (error) {
+      if (error instanceof FirestoreError) {
+        console.error('Erreur Firestore :', error.message);
+      } else {
+        console.error('Erreur inattendue :', error);
       }
       return false;
     }
-  }
-  
+  };
 
+  
   const logoutUser = async (): Promise<void> => {
     try {
       console.log('logout')

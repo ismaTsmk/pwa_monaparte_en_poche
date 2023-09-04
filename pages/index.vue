@@ -96,14 +96,14 @@
 <!-- <button class="btn" onclick="my_modal_2.showModal()">open modal</button> -->
 <dialog id="my_modal_2" class="modal">
   <div  class="modal-box">
-    <h3 class="font-bold text-lg">Evennement selectionner </h3>
-    <p class="py-4">Press ESC key or click outside to close</p>
+    <h3 class="font-bold text-lg">Événement sélectionné</h3>
+    <p class="py-4">Appuyer sur confirmer pour participer</p>
     <div class="modal-action">
       <form method="dialog">
         <button class="btn btn-sm " >Annuler</button>
+        <button class="btn btn-sm bg-primary-500 text-white" type="submit">Participer</button>
 
     </form>
-    <button class="btn btn-sm bg-primary-500 text-white" type="submit">Participer</button>
 
   </div>
   </div>
@@ -166,7 +166,7 @@ export default {
       handler(val: User) {
         console.log('user  : ')
 
-        console.log(val)
+        // console.log(val)
       },
       deep: true,
     },
