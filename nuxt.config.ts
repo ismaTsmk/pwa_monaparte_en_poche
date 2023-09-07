@@ -43,6 +43,8 @@ export default defineNuxtConfig({
 //         fs: {
 //             allow: [".."]
 //             // C:\DEVELLOPEMENT\monaparte_en_poche\front_monaparte\pages
+//             // C:\DEVELLOPEMENT\monaparte_en_poche\front_monaparte\pages
+
 //         }
 //     }
 // },
